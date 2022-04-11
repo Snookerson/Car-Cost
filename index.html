@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index-styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script defer src="app.js"></script>
+    <title>Car Cost</title>
+</head>
+<body>
+
+    <!-- Header =========================================================== -->
+    <!-- Logo --------------------------------->
+    <header>
+        <a href="index.html">
+            <div class="logo-container">
+                <img src="images/icon.svg" alt="Websites logo" class="logo-img">
+                <h1 class="logo-title">Car Cost</h1>
+            </div>
+        </a>
+
+    <!-- Menu --------------------------------->
+        <div class="navigation-container">
+            <button id="menuButton" class="menu-btn btn">Are you new here?</button>
+            <nav id="navList" tabindex="0" class="navigation-list">
+                <ul>
+                    <li class="navigationItem">
+                        <a href="auth.html"><button class="menu-item-btn btn">Login or Register</button></a>
+                    </li>
+<!--                     <li class="navigationItem">
+                        <a href="auth.html"><button class="menu-item-btn btn">Login</button></a>
+                    </li> -->
+                    <li class="navigationItem">
+                        <a href="#sectionTwo"><button class="menu-item-btn btn">Fuel Calculator</button></a>
+                    </li>
+                    <li class="navigationItem">
+                        <button class="menu-item-btn btn">About</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section one ======================================================== -->
+    <section class="section section-one">
+        <div class="banner-box">
+            <div class="banner-text-container">
+                <h2 class="banner-title">Car Cost</h2>
+                <h3 class="banner-text">Track the cost of your car,<br>
+                    calculate expenses and more!</h3>
+            </div>
+
+            <div class="banner-img-container">
+                    <img class="banner-img" src="images/car-svg-2.svg" alt="Banner image">
+            </div>
+            <div class="banner-btn-container">
+                <a href="#"><button class="get-started-btn banner-btn btn">Get Started</button></a>
+                <a href="#calcForm"><button class="calculate-btn banner-btn btn">Calculate Fuel</button></a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="sectionTwo" class="section section-two ">
+        <div class="fuel-calc-text-container">
+            <img src="images/fuel-icon.svg" alt="fuel icon">
+            <h2 class="fuel-calc-title">Fuel Calculator</h2>
+        </div>
+        <div id="fuelForm" class="trans-card ">
+            <form id="calcForm" class="calc-form " >
+
+                <!-- Distance -->
+                <label id="distanceLabel" for="distanceInput" class="card-item  distanceLabel">Distance
+                    <input value="" placeholder="Kilometer" required type="number" id="distanceInput" name="distanceInput" class="num-input num-input-result distanceInput">
+                </label>
+
+                <!-- Two way -->
+                <label for="twoWayCheckInput" class="card-item-check twoWayCheckLabel">Two way trip?
+                    <input value="*2" type="checkbox" id="twoWayCheckInput" class="check-input twoWayCheckInput" name="twoWayCheckInput">
+                </label>
+
+                <!-- Avarage consumption -->
+                <label for="avarageCons" class="card-item   avarageConsLabel">Your car’s avarage consumption
+                    <input value="" step=0.1 placeholder="L/100km" required type="number" id="avarageConsInput" class="num-input num-input-result avarageConsInput" name="avarageCons">
+                </label>
+
+                <!-- Fuel Price -->
+                <label for="fuelPrice" class="card-item fuelPriceLabel">Fuel Price
+                    <input value="" placeholder="Any currency - per litre" required type="number" id="fuelPriceInput" class="num-input num-input-result fuelPriceInput" name="fuelPrice">
+                </label>
+
+                <!-- Type of fuel -->
+                <label for="fuelType" class="card-item  card-item-fuel fuelTypeLabel">Type of fuel
+                    <div id="fuelButtonContainer" class="fuel-type-container fuel-type-container-result">
+                        <div id="petrolButton" class="active-fuel-btn petrol-btn fuel-btn btn">Petrol</div>
+                        <div id="dieselButton" class="diesel-btn fuel-btn btn">Diesel</div>
+                    </div>
+                </label>
+
+                <button id="submitButton" class="submint-btn btn">Calculate</button>
+            </form>
+        </div>
+
+        <!-- Add this after subbmiting with JS -->
+        <div id="resultCard" class="trans-card trans-card-result display-none">
+            <div id="resultContainer" class="result-container">
+                <!-- Total consumption -->
+                <div class="result-box consumption-result-container">
+                    <h3 id="consumtionTitle" class="consumption-title">Total liters consumed</h3>
+                    <p id="consumtionNumber" class="result-number consumption-number"></p>
+                </div>
+                <!-- Total price -->
+                <div class="result-box price-result-container">
+                    <h3 id="priceTitle" class="price-title">Total price of trip</h3>
+                    <p id="priceNumber" class="result-number price-number"></p>
+                </div>
+                <!-- Total emission -->
+                <div class="result-box emission-result">
+                    <h3 id="emisionTitle" class="emission-title">Est. carbon emission</h3>
+                    <p id="emissionNumber" class="result-number emission-number"></p>
+                </div>
+            </div>
+        </div>
+
+         <!-- Add this after subbmiting with JS -->
+         <div id="emissonCard" class="trans-card trans-card-result emisson-container display-none">
+             <h3 class="emission-card-title">About the carbon footprint</h3>
+             <p class="emission-text">The average carbon footprint for a person in the United States is 16 tons, one of the highest rates in the world. Globally, the average is closer to 4 tons. To have the best chance of avoiding a 2℃ rise in global temperatures, the average global carbon footprint per year needs to drop under 2 tons by 2050.</p>
+         </div>
+    </section>
+
+    <footer>
+        <p>All rights reserved</p>
+    </footer>
+
+    <div id="dropdownOverlay" class="dropdown-overlay"></div>
+
+</body>
+</html>

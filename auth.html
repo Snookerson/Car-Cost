@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script defer type="text/javascript" src="auth.js"></script>
+    
+    <title>Car Cost - Login</title>
+</head>
+<body>
+    <!-- Header =========================================================== -->
+    <!-- Logo --------------------------------->
+        <header>
+            <a href="index.html">
+                <div class="logo-container">
+                    <img src="images/icon.svg" alt="Websites logo" class="logo-img">
+                    <h1 class="logo-title">Car Cost</h1>
+                </div>
+            </a>
+        
+        <!-- Navigation ----------------------------->
+            <nav>
+                <ul>
+                    <li class="active-btn nav-button" data-tab-target="#login">Login</li>
+                    <li class="nav-button" data-tab-target="#register">Register</li>
+                    <li id="logoutButton" class="nav-button">Logout</li>
+                </ul>
+                <!-- <div class="menu-mobile"></div> -->
+            </nav>
+        <!-- Empty -------------------------------->
+            <div class="empty"></div>
+        </header>
+    <!-- Section -->
+        <div class="tab-content">
+
+            <!-- Login ----------------------------------------------->
+            <section id="login" data-tab-container class="active trans-card login-container">
+                <h2 class="login-title">Login</h2>
+                <form id="loginForm" action="" class="auth-forms login-form">
+                    <label for="loginEmail">Email</label>
+                        <input required value="attilapallagi91@gmail.com" name="loginEmail" id="loginEmail" class="loginEmail input" type="email">
+                    
+                    <label for="loginPw">Password</label>
+                        <input required value="123456" name="loginPw" id="loginPw" class="loginPw input" type="password">
+                    <a href="#" data-tab-target="#forgotPw" class="forgot-password">I forgot my password</a>
+                    <button class="login-register-button" >Login</button>
+                </form>
+            </section>
+
+            <!-- Register ----------------------------------------------->
+            <section id="register" data-tab-container class="trans-card register-containter">
+                <h2 class="register-title">Register</h2>
+                <form id="register-form" action="" class="auth-forms register-form">
+                    <label for="registerEmail" >Email</label>
+                        <input value="attilapallagi91@gmail.com" required name="registerEmail" id="registerEmail" class="registerEmail input" type="email">
+
+                    <label for="registerPw">Password</label>
+                        <input value="123456" required name="registerPw" id="registerPw" class="registerPw input" type="password">
+                    <label for="registerPwAgain">Password Again</label>
+                        <input value="123456" required name="registerPwAgain" id="registerPwAgain" class="registerPwAgain input" type="password">
+
+                    <p>By using the site you are agreed to the <a href="" class="conditions-link">Terms and conditions</a></p>
+                    <button class="login-register-button">Register</button>
+                </form>
+            </section>
+
+            <!-- Forgot PW ----------------------------------------------->
+            <section id="forgotPw" data-tab-container class="trans-card forgot-pw-container">
+                <h2 class="forgot-pw-title">I forgot my password</h2>
+                <form action="" class="forgot-pw-form">
+                    <label class="auth-forms" for="forgotEmail">Your e-mail address
+                        <input required name="forgotEmail" id="forgotEmail" class="forgotEmail input" type="email">
+                        <button class="forgot-pw-btn" >Send a password to my E-mail</button>
+                    </label>
+                </form>
+            </section>
+        </div>
+
+</body>
+</html>
